@@ -5,8 +5,11 @@ before_action :set_task, only: [:show]
 
 
   def show
-    @task = Task.find(params[:id])
+
     @board = Board.find(params[:board_id])
+    @task = @board.tasks.find(params[:id])
+    binding.pry
+    @comments = @task.comments
   end
 
   def new
