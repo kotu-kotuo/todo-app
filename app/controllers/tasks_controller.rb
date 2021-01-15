@@ -6,6 +6,7 @@ before_action :set_task, only: [:show]
 
   def show
     @task = Task.find(params[:id])
+    @board = Board.find(params[:board_id])
   end
 
   def new
@@ -15,25 +16,26 @@ before_action :set_task, only: [:show]
   end
 
   def create
-    @task = Task.new(task_params)
-    # current_user.tasks.build(task_params)
-
+    @board = Board.find(params[:board_id])
+    @task = @board.tasks.build(task_params)
     if @task.save
-      redirect_to board_path(@task), notice: '保存できたよ'
+      redirect_to board_path(@board), notice: 'コメントを追加'
     else
-      flash.now[:error] = '保存に失敗しました'
+      flash.now[:error] = '更新できませんでした'
       render :new
     end
   end
 
   def edit
+    @board = Board.find(params[:board_id])
     @task = Task.find(params[:id])
   end
 
   def update
     @task = Task.find(params[:id])
+    @board = Board.find(params[:board_id])
     if @task.update(task_params)
-      redirect_to task_path(@task), notice: '更新できました'
+      redirect_to board_task_path(@board,@task), notice: '更新できました'
     else
       flash.now[:error] = '更新できませんでした'
       render :edit

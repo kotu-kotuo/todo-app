@@ -1,0 +1,14 @@
+.container
+  .task_title
+    = @task.title
+  -# - if @task.eyecatch.attached?
+  -#   .eyecatch
+  -#     = image_tag @task.eyecatch
+  .task_content
+    = @task.content
+  .board_detail_actions
+    .dropdown
+      = image_tag 'actions.svg', class: 'dropbtn'
+      .dropdown-content.mini
+        = link_to '------編集', edit_board_task_path(@board,@task)
+        = link_to '------削除', board_task_path, data: { method: 'delete', confirm: '本当に削除してもよろしいですか？' }

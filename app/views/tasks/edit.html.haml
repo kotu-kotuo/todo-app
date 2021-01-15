@@ -1,0 +1,14 @@
+= form_with(model: @task, url: board_task_path(@board,@task), method: 'put', local: true) do |f|
+  %div
+    = f.label :title, 'タイトル'
+  %div
+    = f.text_field :title, class: 'text'
+  %div
+    = f.label :content, '内容'
+  %div
+    = f.text_area :content
+  %div
+    = f.label :limit, '期限'
+  %div
+    = f.text_field :limit
+  = f.submit '保存', class: 'btn-primary'
