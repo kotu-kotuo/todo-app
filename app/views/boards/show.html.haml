@@ -1,2 +1,10 @@
 = @board.title
 = link_to "ホーム", root_path
+= link_to "新しいタスク作成", new_board_task_path(board_id: @board.id)
+- @tasks.each do |task|
+  タスクタイトル
+  = task.title
+  タスクの内容
+  = task.content
+  タスクの期限
+  = task.limit
