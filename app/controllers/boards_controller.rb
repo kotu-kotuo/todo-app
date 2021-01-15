@@ -21,10 +21,9 @@ class BoardsController < ApplicationController
     # current_user.boards.build(board_params)
 
     if @board.save
-      redirect_to board_path(@board)
-      #  notice: '保存できたよ'
+      redirect_to board_path(@board), notice: '保存できたよ'
     else
-      # flash.now[:error] = '保存に失敗しました'
+      flash.now[:error] = '保存に失敗しました'
       render :new
     end
   end
@@ -44,7 +43,7 @@ class BoardsController < ApplicationController
   end
 
   def destroy
-    board = current_user.boards.find(params[:id])
+    board = Board.find(params[:id])
     board.destroy!
     redirect_to root_path, notice: '削除に成功しました'
   end
