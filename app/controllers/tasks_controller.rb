@@ -8,7 +8,6 @@ before_action :set_task, only: [:show]
 
     @board = Board.find(params[:board_id])
     @task = @board.tasks.find(params[:id])
-    binding.pry
     @comments = @task.comments
   end
 
